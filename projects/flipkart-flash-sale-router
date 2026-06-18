@@ -1,0 +1,16 @@
+from collections import Counter, defaultdict, deque
+incoming_orders = ["Electronics", "Fashion", "Electronics", "Home", "Electronics", "Fashion"]
+category_demand=Counter(incoming_orders)
+print(category_demand)
+highdem=category_demand.most_common(1)
+print(highdem)
+warehouse_bins=defaultdict(list)
+items_to_sort = [("Electronics", "Laptop"), ("Fashion", "Shoes"), ("Electronics", "Smartphone")]
+for x,y in items_to_sort:
+  warehouse_bins[x].append(y)
+print(dict(warehouse_bins))
+dispatch_pipeline=deque(["Order_101", "Order_102", "Order_103"])
+it=dispatch_pipeline.popleft()
+dispatch_pipeline.appendleft("VIP_Order_777")
+print(f"Dispatched from front: {it}")
+print(list(dispatch_pipeline))
