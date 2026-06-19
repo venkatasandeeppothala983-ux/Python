@@ -1,0 +1,20 @@
+###Computer Vision Image Processing Pipeline
+import numpy as np
+np.random.seed(42)
+raw_sensor_stream = np.random.randint(0, 256, size=24) 
+print("Raw Stream:", raw_sensor_stream)
+###Reshape to Grid:
+image_grid=(raw_sensor_stream.reshape(4,6))
+print(image_grid)
+###Matrix Orientation Update (Transpose)
+corrected_grid=image_grid.T
+print(corrected_grid)
+###Data Normalization (Vectorized Math):
+normalized_grid=corrected_grid / 255.0
+print(normalized_grid)
+###Glare Detection & Cleaning (np.where):
+cleaned_grid=np.where(normalized_grid > 0.8, 0.5, normalized_grid)
+print(cleaned_grid)
+###System Metrics (Aggregations)
+print(np.median(cleaned_grid))
+print(np.max(cleaned_grid))
